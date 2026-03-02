@@ -23,14 +23,14 @@ guessed_states = []
 while len(guessed_states) < 50:
     answer = screen.textinput(title=f"{len(guessed_states)}/50 States Correct",
                                prompt="What's another state's name?")
-    # If user cancels the input dialog, textinput returns None
-    if answer is None:
-        break
 
     answer_state = answer.strip().lower()
 
     if answer_state == "exit":
-
+        states_to_learn = [state for state in all_states if state not in guessed_states]
+        new_data = pd.DataFrame(states_to_learn)
+        new_data.to_csv("states_to_learn.csv", index=False)
+        break
 
     if answer_state in all_states and answer_state not in guessed_states:
         guessed_states.append(answer_state)
