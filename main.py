@@ -15,7 +15,6 @@ writer = Turtle()
 writer.hideturtle()
 writer.penup()
 
-# Load data and prepare case-insensitive lookup
 data = pd.read_csv("50_states.csv")
 all_states = data.state.str.lower().to_list()
 guessed_states = []
@@ -23,7 +22,6 @@ guessed_states = []
 while len(guessed_states) < 50:
     answer = screen.textinput(title=f"{len(guessed_states)}/50 States Correct",
                                prompt="What's another state's name?")
-
     answer_state = answer.strip().lower()
 
     if answer_state == "exit":
@@ -39,6 +37,5 @@ while len(guessed_states) < 50:
         y_coord = int(state_row['y'])
         writer.goto(x_coord, y_coord)
         writer.write(state_row['state'], align="center", font=("Arial", 10, "normal"))
-
 
 screen.exitonclick()
